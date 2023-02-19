@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+	<style>
+		:root {
+	box-sizing: border-box;
+}
+
+html, body, * {
+	margin: 0;
+	padding: 0;
+	background-color: burlywood;
+	font-family: sans-serif;
+}
+
+#app {
+	height: 100vh;
+}
+
+.judul {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.pilih {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.summary {
+	border: solid blanchedalmond 5px;
+	border-radius: 15px;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.title {
+	text-align: center;
+}
+
+.games {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 15px;
+	padding: 25px;
+}
+
+.option {
+	width: 10%;
+	margin: 10px 15px;
+	padding: 25px;
+	border: solid black 3px;
+	background-color: bisque;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 15px;
+}
+
+.option:hover {
+	cursor: pointer;
+	transform: scale(110%);
+	transition: width 0.5s, height 0.5s;
+	background-color: firebrick;
+}
+	</style>
+	<title>Gunting Batu Kertas</title>
+</head>
+<body>
+
+	<div id="app">
+		<div class="judul">
+			<h1>Permainan Gunting Batu Kertas</h1>
+		</div>
+		<div class="summary">
+			<h2 id="inGame"></h1>
+				<br>
+				<h1 class="title">HASIL</h1>
+				<br>
+				<h1 id="result"></h1>
+			</div>
+			<div class="pilih">
+				<h2>Pilih : </h2>
+			</div>
+			<div class="games">
+				<div class="option" onclick="pickOption('✌')">✌</div>
+				<div class="option" onclick="pickOption('✊')">✊</div>
+				<div class="option" onclick="pickOption('🖐')">🖐</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			class Start{
+				constructor() {
+					this.playerName = "Kamu"
+					this.botName = "DMZXBOT"
+					this.winner = ""
+					this.botOption;
+					this.playerOption;
+				}
+
+				get getBotOption() {
+					return this.botOption;
+				}
+
+				set setBotOption(option) {
+					this.botOption = option;
+				}
+
+				get getPlayerOption() {
+					return this.playerOption;
+				}
+
+				set setPlayerOption (option) {
+					this.playerOption = option;
+				}
+
+				botBrain() {
+					const option = ['✊', '✌', '🖐'];
+					const bot = option [Math.floor(Math.random() * option.length)];
+					return bot;
+				}
+
+				winCalculation() {
+					if (this.botOption == "🖐" && this.playerOption== "✌") {
+						return this.winner = this.playerName
+					}else if (this.botOption == "🖐" && this.playerOption== "✊") {
+						return this.winner = this.botName
+					}else if (this.botOption == "✌" && this.playerOption== "✊") {
+						return this.winner = this.playerName
+					}else if (this.botOption == "✌" && this.playerOption== "🖐") {
+						return this.winner = this.botName
+					}else if (this.botOption == "✊" && this.playerOption== "🖐") {
+						return this.winner = this.playerName
+					}else if (this.botOption == "✊" && this.playerOption== "✌") {
+						return this.winner = this.botName
+					}else {
+						return this.winner = "SERI"
+					}
+				}
+
+				matchResult() {
+					if (this.winner != "SERI") {
+						return `${this.winner} MENANG!`;
+					}else {
+						return 'Gaada yang menang';
+					}
+				}
+			}
+
+			function pickOption(params) {
+				const start = new Start();
+				start.setPlayerOption = params;
+				start.setBotOption = start.botBrain();
+				start.winCalculation();
+				console.log(`player : ${start.getPlayerOption}  bot : ${start.getBotOption}`);
+				console.log("Hasil akhir : ", start.matchResult());
+
+				const inGame = document.getElementById("inGame")
+				const result = document.getElementById("result")
+
+				inGame.textContent = "..."
+				result.textContent = "..."
+
+				setTimeout(() => {
+					inGame.textContent = `Kamu ${start.getPlayerOption} VS ${start.getBotOption} Bot`
+					result.textContent = start.matchResult();
+				},300);
+
+			}
+		</script>
+
+	</body>
+	</html>

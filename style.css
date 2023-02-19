@@ -1,0 +1,87 @@
+:root {
+	box-sizing: border-box;
+}
+
+html, body, * {
+	margin: 0;
+	padding: 0;
+	background-color: burlywood;
+	font-family: sans-serif;
+}
+
+#app {
+	height: 100vh;
+}
+
+.judul {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.pilih {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.summary {
+	border: solid blanchedalmond 5px;
+	border-radius: 15px;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.title {
+	text-align: center;
+}
+
+.games {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 15px;
+	padding: 25px;
+}
+
+.option {
+	width: 10%;
+	margin: 10px 15px;
+	padding: 25px;
+	border: solid black 3px;
+	background-color: bisque;
+	text-align: center;
+	font-size: 30px;
+	border-radius: 15px;
+}
+
+.option:hover {
+	cursor: pointer;
+	transform: scale(110%);
+	transition: width 0.5s, height 0.5s;
+	background-color: firebrick;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
